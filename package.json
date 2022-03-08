@@ -1,0 +1,27 @@
+{
+  "name": "wp-table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel watch src/index.js",
+    "build": "parcel build src/index.js --out-file wp-table-build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/transformer-react-refresh-wrap": "^2.3.2",
+    "classnames": "^2.3.1",
+    "immer": "^9.0.12",
+    "nprogress": "^0.2.0",
+    "polished": "^4.1.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "regenerator-runtime": "^0.13.9",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.3.2"
+  }
+}
