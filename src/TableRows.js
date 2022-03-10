@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { AiOutlinePlus } from 'react-icons/ai';
 
-import Record from './Record';
+import Record from './Record/Record';
 
 import useSiteContext from './SiteContext';
 
@@ -28,11 +29,13 @@ const TableRows = () => {
   };
 
   return (
-    <StyledRows>
-      {records.map(record => (
-        <Record key={record.id} record={record} />
+    <StyledRows className="records-list">
+      {records.map((record, index) => (
+        <Record key={record.id} index={index + 1} record={record} />
       ))}
-      <button onClick={addRecord}>+</button>
+      <button className="add-record" onClick={addRecord}>
+        <AiOutlinePlus />
+      </button>
     </StyledRows>
   );
 };
@@ -45,6 +48,12 @@ const StyledRows = styled.div`
         border-bottom: 1px solid gray;
       }
     }
+  }
+  .add-record {
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    border: 0;
   }
 `;
 export default TableRows;

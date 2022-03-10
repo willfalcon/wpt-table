@@ -15,24 +15,27 @@ function save_cell($request) {
 }
 
 
-function save_heading($request) {
+function save_field($request) {
   $params = $request->get_params();
 
   $metaID = $params['metaID'];
   $postId = $params['postId'];
   $value = $params['value'];
+  $type = $params['type'];
 
   update_metadata_by_mid( 'post', $metaID, $value );
-
+  update_post_meta( $postId, 'wpt_field_type_' . $metaID, $type);
   return $params;
 }
 
 function add_field($request) {
   $params = $request->get_params();
   $postId = $params['postId'];
+  $type = 'text';
 
   $field = add_post_meta( $postId, 'wpt_field_name', '');
- 
+  
+  $field_type = add_post_meta($postId, 'wpt_field_type_' . $field, $type);
   return $field;
 }
 
@@ -43,6 +46,17 @@ function delete_field($request) {
   $value = $params['value'];
 
   $field = delete_post_meta( $postId, 'wpt_field_name', $value);
+  $field_type = delete_post_meta( $postId, 'wpt_field_type_' . $metaId);
+ 
+  return $field;
+}
+
+function delete_record($request) {
+  $params = $request->get_params();
+  $postId = $params['postId'];
+  $record = $params['record'];
+
+  $field = delete_post_meta( $postId, 'wpt_record', $record);
  
   return $field;
 }
@@ -52,7 +66,8 @@ function add_record($request) {
   $postId = $params['postId'];
 
   $record = add_post_meta( $postId, 'wpt_record', '');
-  write_log($record);
+  update_metadata_by_mid('post', $record, $record);
+  
   return $record;
 }
 
@@ -96,13 +111,4 @@ function get_records($request) {
   }, $records);
 
   return $records;
-}
-
-function get_complete_meta( $post_id, $meta_key ) {
-  global $wpdb;
-  $mid = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = %s", $post_id, $meta_key) );
-  if( $mid != '' )
-    return $mid;
-
-  return false;
 }

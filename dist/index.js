@@ -32654,6 +32654,7 @@ var SiteContextProvider = function SiteContextProvider(_ref) {
   var savedFields = data.fields,
       savedRecords = data.records;
   var initialFields = savedFields.map(function (field) {
+    var thing = field.meta_value;
     return {
       label: field.meta_value,
       id: field.meta_id
@@ -32739,54 +32740,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var GlobalStyle = (0, _styledComponents.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  \n"])));
 var _default = GlobalStyle;
 exports.default = _default;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"lib/useDebounce.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = require("react");
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function useDebounce(value, delay) {
-  // State and setters for debounced value
-  var _useState = (0, _react.useState)(value),
-      _useState2 = _slicedToArray(_useState, 2),
-      debouncedValue = _useState2[0],
-      setDebouncedValue = _useState2[1];
-
-  (0, _react.useEffect)(function () {
-    // Update debounced value after delay
-    var handler = setTimeout(function () {
-      setDebouncedValue(value);
-    }, delay); // Cancel the timeout if value changes (also on delay change or unmount)
-    // This is how we prevent debounced value from updating if value is changed ...
-    // .. within the delay period. Timeout gets cleared and restarted.
-
-    return function () {
-      clearTimeout(handler);
-    };
-  }, [value, delay] // Only re-call effect if value or delay changes
-  );
-  return debouncedValue;
-}
-
-var _default = useDebounce;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/react-icons/lib/esm/iconsManifest.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"../node_modules/react-icons/lib/esm/iconsManifest.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49402,7 +49356,54 @@ function AiTwotoneWarning(props) {
 }
 
 ;
-},{"../lib":"../node_modules/react-icons/lib/esm/index.js"}],"../node_modules/immer/dist/immer.esm.js":[function(require,module,exports) {
+},{"../lib":"../node_modules/react-icons/lib/esm/index.js"}],"lib/useDebounce.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = require("react");
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function useDebounce(value, delay) {
+  // State and setters for debounced value
+  var _useState = (0, _react.useState)(value),
+      _useState2 = _slicedToArray(_useState, 2),
+      debouncedValue = _useState2[0],
+      setDebouncedValue = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    // Update debounced value after delay
+    var handler = setTimeout(function () {
+      setDebouncedValue(value);
+    }, delay); // Cancel the timeout if value changes (also on delay change or unmount)
+    // This is how we prevent debounced value from updating if value is changed ...
+    // .. within the delay period. Timeout gets cleared and restarted.
+
+    return function () {
+      clearTimeout(handler);
+    };
+  }, [value, delay] // Only re-call effect if value or delay changes
+  );
+  return debouncedValue;
+}
+
+var _default = useDebounce;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"../node_modules/immer/dist/immer.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50483,7 +50484,45 @@ exports.produce = fn;
 exports.Immer = un;
 var _default = fn;
 exports.default = _default;
-},{}],"Heading.js":[function(require,module,exports) {
+},{}],"lib/useOnClickOutside.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = require("react");
+
+function useOnClickOutside(ref, handler) {
+  (0, _react.useEffect)(function () {
+    var listener = function listener(event) {
+      // Do nothing if clicking ref's element or descendent elements
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+
+      handler(event);
+    };
+
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+    return function () {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, // Add ref and handler to effect dependencies
+  // It's worth noting that because passed in handler is a new ...
+  // ... function on every render that will cause this effect ...
+  // ... callback/cleanup to run every render. It's not a big deal ...
+  // ... but to optimize you can wrap handler in useCallback before ...
+  // ... passing it into this hook.
+  [ref, handler]);
+}
+
+var _default = useOnClickOutside;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"Heading.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50502,6 +50541,8 @@ var _immer = _interopRequireDefault(require("immer"));
 var _useDebounce = _interopRequireDefault(require("./lib/useDebounce"));
 
 var _SiteContext = _interopRequireDefault(require("./SiteContext"));
+
+var _useOnClickOutside = _interopRequireDefault(require("./lib/useOnClickOutside"));
 
 var _templateObject, _templateObject2;
 
@@ -50530,7 +50571,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Heading = function Heading(_ref) {
-  var field = _ref.field;
+  var field = _ref.field,
+      primary = _ref.primary;
 
   var _useSiteContext = (0, _SiteContext.default)(),
       postId = _useSiteContext.postId,
@@ -50542,7 +50584,7 @@ var Heading = function Heading(_ref) {
       value = _useState2[0],
       setValue = _useState2[1];
 
-  var _useState3 = (0, _react.useState)('text'),
+  var _useState3 = (0, _react.useState)(field.type || 'text'),
       _useState4 = _slicedToArray(_useState3, 2),
       type = _useState4[0],
       setType = _useState4[1];
@@ -50562,20 +50604,20 @@ var Heading = function Heading(_ref) {
               case 0:
                 _context.next = 2;
                 return wp.apiRequest({
-                  path: '/wp-table/v1/save-heading',
+                  path: '/wp-table/v1/save-field',
                   type: 'POST',
                   data: {
                     value: value,
                     metaID: field.id,
-                    postId: postId
+                    postId: postId,
+                    type: type
                   }
                 });
 
               case 2:
                 res = _context.sent;
-                console.log(res);
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -50619,7 +50661,8 @@ var Heading = function Heading(_ref) {
                   data: {
                     metaID: field.id,
                     postId: postId,
-                    value: value
+                    value: value,
+                    type: type
                   }
                 });
 
@@ -50646,8 +50689,14 @@ var Heading = function Heading(_ref) {
     setFields(newFields);
   };
 
+  var headingRef = (0, _react.useRef)();
+  (0, _useOnClickOutside.default)(headingRef, function () {
+    return setSettingsOpen(false);
+  });
   return /*#__PURE__*/_react.default.createElement(StyledHeading, {
-    className: "heading"
+    className: "heading",
+    primary: primary ? true : false,
+    ref: headingRef
   }, /*#__PURE__*/_react.default.createElement("input", {
     className: "heading__input",
     value: value,
@@ -50666,16 +50715,22 @@ var Heading = function Heading(_ref) {
   }, "Delete Field", /*#__PURE__*/_react.default.createElement(_ai.AiFillDelete, null))));
 };
 
-var Modal = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 100%;\n  left: 0;\n  width: 100%;\n  background: ", ";\n  button {\n    background: transparent;\n    border: 0;\n    color: white;\n    padding-top: 5px;\n    padding-bottom: 5px;\n  }\n"])), function (_ref2) {
+var Modal = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 100%;\n  left: 0;\n  width: 100%;\n  background: ", ";\n  z-index: 1;\n  button {\n    background: transparent;\n    border: 0;\n    color: white;\n    padding-top: 5px;\n    padding-bottom: 5px;\n  }\n"])), function (_ref2) {
   var theme = _ref2.theme;
   return theme.dark;
 });
 
-var StyledHeading = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  width: 175px;\n  display: flex;\n  position: relative;\n  &:last-child {\n    border-right: 1px solid gray;\n  }\n\n  .heading {\n    &__input {\n      border-radius: 0;\n      margin: 0;\n      border: 0;\n      width: 100%;\n      padding: 10px 5px;\n    }\n    &__dropdown {\n      background: transparent;\n      border: 0;\n    }\n  }\n"])));
+var StyledHeading = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n\n  display: flex;\n  position: relative;\n  &:last-child {\n    border-right: 1px solid gray;\n  }\n  width: ", ";\n  padding-left: ", ";\n\n  .heading {\n    &__input {\n      border-radius: 0;\n      margin: 0;\n      border: 0;\n      width: 100%;\n      padding: 10px 5px;\n    }\n    &__dropdown {\n      background: transparent;\n      border: 0;\n    }\n  }\n"])), function (_ref3) {
+  var primary = _ref3.primary;
+  return primary ? "".concat(175 + 30, "px") : '175px';
+}, function (_ref4) {
+  var primary = _ref4.primary;
+  return primary ? '30px' : 0;
+});
 
 var _default = Heading;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-icons/ai":"../node_modules/react-icons/ai/index.esm.js","immer":"../node_modules/immer/dist/immer.esm.js","./lib/useDebounce":"lib/useDebounce.js","./SiteContext":"SiteContext.js"}],"Headings.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-icons/ai":"../node_modules/react-icons/ai/index.esm.js","immer":"../node_modules/immer/dist/immer.esm.js","./lib/useDebounce":"lib/useDebounce.js","./SiteContext":"SiteContext.js","./lib/useOnClickOutside":"lib/useOnClickOutside.js"}],"Headings.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50687,13 +50742,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _ai = require("react-icons/ai");
+
 var _SiteContext = _interopRequireDefault(require("./SiteContext"));
 
 var _useDebounce = _interopRequireDefault(require("./lib/useDebounce"));
 
 var _Heading = _interopRequireDefault(require("./Heading"));
 
-var _templateObject;
+var _templateObject, _templateObject2;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50733,7 +50790,8 @@ var Headings = function Headings() {
       data: {
         postId: postId,
         metaKey: 'wpt_field_name',
-        value: ''
+        value: '',
+        type: 'text'
       }
     }).then(function (res) {
       setFields([].concat(_toConsumableArray(fields), [{
@@ -50747,24 +50805,27 @@ var Headings = function Headings() {
 
   return /*#__PURE__*/_react.default.createElement(StyledHeadings, {
     className: "headings"
-  }, fields.map(function (field) {
+  }, fields.map(function (field, index) {
     return /*#__PURE__*/_react.default.createElement(_Heading.default, {
       key: field.id,
+      primary: index === 0,
       field: field
     });
-  }), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement(AddField, {
     className: "heading add"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "add-column_button",
     onClick: newColumn
-  }, "+")));
+  }, /*#__PURE__*/_react.default.createElement(_ai.AiOutlinePlus, null))));
 };
 
-var StyledHeadings = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n"])));
+var AddField = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  width: 50px;\n  border: 1px solid gray;\n  button {\n    width: 100%;\n    height: 100%;\n    background: transparent;\n    border: 0;\n    svg {\n      width: 20px;\n      height: 20px;\n    }\n  }\n"])));
+
+var StyledHeadings = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n"])));
 
 var _default = Headings;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./SiteContext":"SiteContext.js","./lib/useDebounce":"lib/useDebounce.js","./Heading":"Heading.js"}],"Cell.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-icons/ai":"../node_modules/react-icons/ai/index.esm.js","./SiteContext":"SiteContext.js","./lib/useDebounce":"lib/useDebounce.js","./Heading":"Heading.js"}],"Cell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50808,12 +50869,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Cell = function Cell(_ref) {
   var field = _ref.field,
-      record = _ref.record;
+      record = _ref.record,
+      primary = _ref.primary,
+      index = _ref.index,
+      cellIndex = _ref.cellIndex;
   var thisCell = record.fields[record.fields.findIndex(function (refField) {
     return refField.key === "wpt_".concat(record.id, "_").concat(field.id);
   })];
 
-  var _useState = (0, _react.useState)((thisCell === null || thisCell === void 0 ? void 0 : thisCell.value) || ''),
+  var _useState = (0, _react.useState)((thisCell === null || thisCell === void 0 ? void 0 : thisCell.value[0]) || ''),
       _useState2 = _slicedToArray(_useState, 2),
       value = _useState2[0],
       setValue = _useState2[1];
@@ -50859,8 +50923,12 @@ var Cell = function Cell(_ref) {
     save(debouncedValue);
   }, [debouncedValue]);
   return /*#__PURE__*/_react.default.createElement(StyledCell, {
-    className: "cell blank-cell"
-  }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "cell",
+    primary: primary ? true : false,
+    "data-cell-index": cellIndex
+  }, primary && /*#__PURE__*/_react.default.createElement("span", {
+    className: "cell__index"
+  }, index), /*#__PURE__*/_react.default.createElement("input", {
     name: field.label,
     type: "text",
     value: value,
@@ -50870,11 +50938,17 @@ var Cell = function Cell(_ref) {
   }));
 };
 
-var StyledCell = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  width: 175px;\n\n  &:last-child {\n    border-right: 1px solid gray;\n  }\n\n  input {\n    border-radius: 0;\n    margin: 0;\n    border: 0;\n    width: 100%;\n    padding: 10px 5px;\n  }\n"])));
+var StyledCell = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border-top: 1px solid gray;\n  border-left: 1px solid gray;\n  width: ", ";\n\n  &:last-child {\n    border-right: 1px solid gray;\n  }\n\n  padding-left: ", ";\n\n  .cell {\n    &__index {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n    }\n  }\n\n  input {\n    border-radius: 0;\n    margin: 0;\n    border: 0;\n    width: 100%;\n    padding: 10px 5px;\n  }\n"])), function (_ref2) {
+  var primary = _ref2.primary;
+  return primary ? "".concat(175 + 30, "px") : '175px';
+}, function (_ref3) {
+  var primary = _ref3.primary;
+  return primary ? '30px' : 0;
+});
 
 var _default = Cell;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./lib/useDebounce":"lib/useDebounce.js","./SiteContext":"SiteContext.js"}],"Record.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./lib/useDebounce":"lib/useDebounce.js","./SiteContext":"SiteContext.js"}],"Record/RecordModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50884,32 +50958,68 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _SiteContext = _interopRequireDefault(require("./SiteContext"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Cell = _interopRequireDefault(require("./Cell"));
+var _ai = require("react-icons/ai");
+
+var _immer = _interopRequireDefault(require("immer"));
+
+var _SiteContext = _interopRequireDefault(require("../SiteContext"));
+
+var _templateObject;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Record = function Record(_ref) {
-  var record = _ref.record;
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var RecordModal = function RecordModal(_ref) {
+  var record = _ref.record,
+      location = _ref.location;
 
   var _useSiteContext = (0, _SiteContext.default)(),
-      fields = _useSiteContext.fields;
+      fields = _useSiteContext.fields,
+      postId = _useSiteContext.postId,
+      records = _useSiteContext.records,
+      setRecords = _useSiteContext.setRecords;
 
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "blank-row row"
-  }, fields.map(function (field) {
-    return /*#__PURE__*/_react.default.createElement(_Cell.default, {
-      key: field.id,
-      record: record,
-      field: field
+  var deleteRecord = function deleteRecord(e) {
+    e.preventDefault();
+    wp.apiRequest({
+      path: '/wp-table/v1/delete-record',
+      type: 'POST',
+      data: {
+        postId: postId,
+        record: record.id
+      }
     });
-  }));
+    var newRecords = (0, _immer.default)(records, function (draft) {
+      var index = draft.findIndex(function (rec) {
+        return rec.id === record.id;
+      });
+      draft.splice(index, 1);
+    });
+    setRecords(newRecords);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(Modal, {
+    style: {
+      left: "".concat(location[0], "px"),
+      top: "".concat(location[1], "px")
+    }
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "delete-field",
+    onClick: deleteRecord
+  }, "Delete Record", /*#__PURE__*/_react.default.createElement(_ai.AiFillDelete, null)));
 };
 
-var _default = Record;
+var Modal = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: absolute;\n  background: ", ";\n  z-index: 1;\n  .delete-field {\n    color: white;\n    background: transparent;\n    border: 0;\n    padding: 5px 10px;\n  }\n"])), function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.dark;
+});
+
+var _default = RecordModal;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./SiteContext":"SiteContext.js","./Cell":"Cell.js"}],"TableRows.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-icons/ai":"../node_modules/react-icons/ai/index.esm.js","immer":"../node_modules/immer/dist/immer.esm.js","../SiteContext":"SiteContext.js"}],"Record/Record.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50921,7 +51031,117 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Record = _interopRequireDefault(require("./Record"));
+var _SiteContext = _interopRequireDefault(require("../SiteContext"));
+
+var _Cell = _interopRequireDefault(require("../Cell"));
+
+var _RecordModal = _interopRequireDefault(require("./RecordModal"));
+
+var _useOnClickOutside = _interopRequireDefault(require("../lib/useOnClickOutside"));
+
+var _templateObject;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var Record = function Record(_ref) {
+  var record = _ref.record,
+      recordIndex = _ref.index;
+
+  var _useSiteContext = (0, _SiteContext.default)(),
+      fields = _useSiteContext.fields;
+
+  var rowRef = (0, _react.useRef)();
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      rowSettings = _useState2[0],
+      toggleRowSettings = _useState2[1];
+
+  var _useState3 = (0, _react.useState)([null, null]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      clickLocation = _useState4[0],
+      setClickLocation = _useState4[1];
+
+  (0, _react.useEffect)(function () {
+    if (rowRef.current) {
+      rowRef.current.addEventListener('mousedown', function (e) {
+        if (e.button === 2) {
+          toggleRowSettings(true);
+          var startingWidth = 0;
+
+          if ('cellIndex' in e.target.parentNode.dataset) {
+            startingWidth = 175 * parseInt(e.target.parentNode.dataset.cellIndex);
+          } // console.log([e.offsetX, e.offsetY]);
+
+
+          setClickLocation([startingWidth + e.offsetX, e.offsetY]);
+        }
+      });
+    }
+  }, [rowRef.current]);
+  (0, _useOnClickOutside.default)(rowRef, function () {
+    return toggleRowSettings(false);
+  });
+  return /*#__PURE__*/_react.default.createElement(StyledRecord, {
+    className: "row",
+    ref: rowRef,
+    onContextMenu: function onContextMenu(e) {
+      return e.preventDefault();
+    },
+    "data-record": true
+  }, fields.map(function (field, index) {
+    return /*#__PURE__*/_react.default.createElement(_Cell.default, {
+      key: field.id,
+      index: recordIndex,
+      primary: index === 0,
+      cellIndex: index,
+      record: record,
+      field: field
+    });
+  }), rowSettings && /*#__PURE__*/_react.default.createElement(_RecordModal.default, {
+    location: clickLocation,
+    record: record,
+    toggleRowSettings: toggleRowSettings
+  }));
+};
+
+var StyledRecord = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: relative;\n"])));
+
+var _default = Record;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../SiteContext":"SiteContext.js","../Cell":"Cell.js","./RecordModal":"Record/RecordModal.js","../lib/useOnClickOutside":"lib/useOnClickOutside.js"}],"TableRows.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _ai = require("react-icons/ai");
+
+var _Record = _interopRequireDefault(require("./Record/Record"));
 
 var _SiteContext = _interopRequireDefault(require("./SiteContext"));
 
@@ -50969,51 +51189,25 @@ var TableRows = function TableRows() {
     });
   };
 
-  return /*#__PURE__*/_react.default.createElement(StyledRows, null, records.map(function (record) {
+  return /*#__PURE__*/_react.default.createElement(StyledRows, {
+    className: "records-list"
+  }, records.map(function (record, index) {
     return /*#__PURE__*/_react.default.createElement(_Record.default, {
       key: record.id,
+      index: index + 1,
       record: record
     });
   }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "add-record",
     onClick: addRecord
-  }, "+"));
+  }, /*#__PURE__*/_react.default.createElement(_ai.AiOutlinePlus, null)));
 };
 
-var StyledRows = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  .row {\n    display: flex;\n    &:last-child {\n      .cell {\n        border-bottom: 1px solid gray;\n      }\n    }\n  }\n"])));
+var StyledRows = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  .row {\n    display: flex;\n    &:last-child {\n      .cell {\n        border-bottom: 1px solid gray;\n      }\n    }\n  }\n  .add-record {\n    height: 20px;\n    width: 20px;\n    background: transparent;\n    border: 0;\n  }\n"])));
 
 var _default = TableRows;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Record":"Record.js","./SiteContext":"SiteContext.js"}],"Layout.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Headings = _interopRequireDefault(require("./Headings"));
-
-var _TableRows = _interopRequireDefault(require("./TableRows"));
-
-var _templateObject;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Layout = function Layout() {
-  return /*#__PURE__*/_react.default.createElement(TableWrap, null, /*#__PURE__*/_react.default.createElement(_Headings.default, null), /*#__PURE__*/_react.default.createElement(_TableRows.default, null));
-};
-
-var TableWrap = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  background: white;\n  width: 100%;\n"])));
-
-var _default = Layout;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Headings":"Headings.js","./TableRows":"TableRows.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-icons/ai":"../node_modules/react-icons/ai/index.esm.js","./Record/Record":"Record/Record.js","./SiteContext":"SiteContext.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51031,9 +51225,11 @@ var _theme = _interopRequireDefault(require("./theme"));
 
 var _GlobalStyles = _interopRequireDefault(require("./GlobalStyles"));
 
-var _Layout = _interopRequireDefault(require("./Layout"));
+var _Headings = _interopRequireDefault(require("./Headings"));
 
-var _templateObject;
+var _TableRows = _interopRequireDefault(require("./TableRows"));
+
+var _templateObject, _templateObject2;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51055,14 +51251,16 @@ var App = function App(_ref) {
       fields: fields,
       records: records
     }
-  }, /*#__PURE__*/_react.default.createElement(AppWrapper, null, /*#__PURE__*/_react.default.createElement(_Layout.default, null), /*#__PURE__*/_react.default.createElement(_GlobalStyles.default, null))));
+  }, /*#__PURE__*/_react.default.createElement(AppWrapper, null, /*#__PURE__*/_react.default.createElement(Layout, null, /*#__PURE__*/_react.default.createElement(_Headings.default, null), /*#__PURE__*/_react.default.createElement(_TableRows.default, null)), /*#__PURE__*/_react.default.createElement(_GlobalStyles.default, null))));
 };
 
-var AppWrapper = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  box-sizing: border-box;\n\n  -ms-overflow-style: -ms-autohiding-scrollbar;\n  scroll-behavior: smooth;\n  *,\n  *:before,\n  *:after {\n    box-sizing: inherit;\n  }\n\n  button {\n    cursor: pointer;\n  }\n"])));
+var Layout = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  background: white;\n  width: 100%;\n"])));
+
+var AppWrapper = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  box-sizing: border-box;\n\n  -ms-overflow-style: -ms-autohiding-scrollbar;\n  scroll-behavior: smooth;\n  *,\n  *:before,\n  *:after {\n    box-sizing: inherit;\n  }\n\n  button {\n    cursor: pointer;\n  }\n"])));
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./SiteContext":"SiteContext.js","./theme":"theme.js","./GlobalStyles":"GlobalStyles.js","./Layout":"Layout.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./SiteContext":"SiteContext.js","./theme":"theme.js","./GlobalStyles":"GlobalStyles.js","./Headings":"Headings.js","./TableRows":"TableRows.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -51079,9 +51277,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var insertPoint = document.getElementById('normal-sortables');
-var insertDiv = document.createElement('div');
-var appWrapper = insertPoint.appendChild(insertDiv);
+console.log(wp);
+wp.domReady(function () {
+  initData();
+});
+var sideSortables = document.querySelector('#side-sortables');
+sideSortables.parentNode.removeChild(sideSortables);
+var appWrapper = document.querySelector('#wpt-table-box .inside');
 var postId = document.getElementById('post_ID').value;
 
 function initData() {
@@ -51132,8 +51334,6 @@ function _initData() {
   }));
   return _initData.apply(this, arguments);
 }
-
-initData();
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./App":"App.js"}],"../../../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -51162,7 +51362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65163" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56385" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

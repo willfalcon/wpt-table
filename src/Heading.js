@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { AiFillCaretDown, AiFillDelete } from 'react-icons/ai';
 import produce from 'immer';
 
 import useDebounce from './lib/useDebounce';
 import useSiteContext from './SiteContext';
+import useOnClickOutside from './lib/useOnClickOutside';
 
-const Heading = ({ field }) => {
+const Heading = ({ field, primary }) => {
   const { postId, setFields, fields } = useSiteContext();
 
   const [value, setValue] = useState(field.label || '');
-  const [type, setType] = useState('text');
+  const [type, setType] = useState(field.type || 'text');
 
   const debouncedValue = useDebounce(value, 500);
 
   useEffect(() => {
     async function save(value) {
       const res = await wp.apiRequest({
-        path: '/wp-table/v1/save-heading',
+        path: '/wp-table/v1/save-field',
         type: 'POST',
         data: {
           value,
           metaID: field.id,
           postId,
+          type,
         },
       });
-      console.log(res);
     }
     save(debouncedValue);
   }, [debouncedValue]);
@@ -47,6 +48,7 @@ const Heading = ({ field }) => {
           metaID: field.id,
           postId,
           value,
+          type,
         },
       });
     }
@@ -60,8 +62,10 @@ const Heading = ({ field }) => {
     setFields(newFields);
   };
 
+  const headingRef = useRef();
+  useOnClickOutside(headingRef, () => setSettingsOpen(false));
   return (
-    <StyledHeading className="heading">
+    <StyledHeading className="heading" primary={primary ? true : false} ref={headingRef}>
       <input className="heading__input" value={value} onChange={e => setValue(e.target.value)} type="text" />
       <button className="heading__dropdown" onClick={toggleSettings}>
         <AiFillCaretDown />
@@ -84,6 +88,7 @@ const Modal = styled.div`
   left: 0;
   width: 100%;
   background: ${({ theme }) => theme.dark};
+  z-index: 1;
   button {
     background: transparent;
     border: 0;
@@ -96,12 +101,14 @@ const Modal = styled.div`
 const StyledHeading = styled.div`
   border-top: 1px solid gray;
   border-left: 1px solid gray;
-  width: 175px;
+
   display: flex;
   position: relative;
   &:last-child {
     border-right: 1px solid gray;
   }
+  width: ${({ primary }) => (primary ? `${175 + 30}px` : '175px')};
+  padding-left: ${({ primary }) => (primary ? '30px' : 0)};
 
   .heading {
     &__input {

@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import 'regenerator-runtime';
 import App from './App';
 
-const insertPoint = document.getElementById('normal-sortables');
-const insertDiv = document.createElement('div');
-const appWrapper = insertPoint.appendChild(insertDiv);
+console.log(wp);
+
+wp.domReady(() => {
+  initData();
+});
+
+const sideSortables = document.querySelector('#side-sortables');
+sideSortables.parentNode.removeChild(sideSortables);
+const appWrapper = document.querySelector('#wpt-table-box .inside');
 
 const postId = document.getElementById('post_ID').value;
 
@@ -25,5 +31,3 @@ async function initData() {
   });
   ReactDOM.render(<App postId={parseInt(postId)} fields={fields} records={records} />, appWrapper);
 }
-
-initData();
