@@ -92,6 +92,13 @@ add_action( 'rest_api_init', function () {
       return current_user_can(  'publish_posts' );
     }
   ));
+  register_rest_route( 'wp-table/v1', '/update-record', array(
+    'methods' => 'POST',
+    'callback' => 'update_record',
+    'permission_callback' => function() {
+      return current_user_can(  'publish_posts' );
+    }
+  ));
   register_rest_route( 'wp-table/v1', '/get-records', array(
     'methods' => 'GET',
     'callback' => 'get_records',
@@ -128,7 +135,7 @@ add_action( 'enqueue_block_editor_assets', 'wpt_enqueue_block_editor_assets' );
 
 function get_table($table_id) {
   $fields = get_complete_meta($table_id, 'wpt_field_name');
-  $record_ids = get_post_meta($table_id, 'wpt_record');
+  $record_ids = get_complete_meta($table_id, 'wpt_record');
   
   
   $records = array();
@@ -138,15 +145,16 @@ function get_table($table_id) {
     foreach($fields as $field) {
       $record_field = array(
         'field_label' => $field->meta_value,
-        'field_value' => get_post_meta($table_id, 'wpt_' . $record_id . '_' . $field->meta_id)[0]
+        'field_value' => get_post_meta($table_id, 'wpt_' . $record_id->meta_id . '_' . $field->meta_id)[0]
       );
       array_push($record_fields, $record_field);
     }
     $record_arr = array(
-      'id' => $record_id,
+      'id' => $record_id->meta_id,
+      'subheading' => $record_id->meta_value == 'wpt_sub_heading',
       'fields' => $record_fields
     );
-    array_push($records, $record_fields);
+    array_push($records, $record_arr);
   }
 
   $table = array(

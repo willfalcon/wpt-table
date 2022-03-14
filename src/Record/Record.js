@@ -6,7 +6,7 @@ import Cell from '../Cell';
 import RecordModal from './RecordModal';
 import useOnClickOutside from '../lib/useOnClickOutside';
 
-const Record = ({ record, index: recordIndex }) => {
+const Record = ({ record, index: recordIndex, subheading = false }) => {
   const { fields } = useSiteContext();
   const rowRef = useRef();
   const [rowSettings, toggleRowSettings] = useState(false);
@@ -34,9 +34,21 @@ const Record = ({ record, index: recordIndex }) => {
   return (
     <StyledRecord className="row" ref={rowRef} onContextMenu={e => e.preventDefault()} data-record>
       {fields.map((field, index) => {
-        return <Cell key={field.id} index={recordIndex} primary={index === 0} cellIndex={index} record={record} field={field} />;
+        return (
+          <Cell
+            key={field.id}
+            index={recordIndex}
+            primary={index === 0}
+            cellIndex={index}
+            record={record}
+            field={field}
+            subheading={subheading}
+          />
+        );
       })}
-      {rowSettings && <RecordModal location={clickLocation} record={record} toggleRowSettings={toggleRowSettings} />}
+      {rowSettings && (
+        <RecordModal location={clickLocation} record={record} toggleRowSettings={toggleRowSettings} firstRow={recordIndex === 1} />
+      )}
     </StyledRecord>
   );
 };

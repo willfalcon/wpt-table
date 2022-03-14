@@ -7,7 +7,7 @@ import Record from './Record/Record';
 import useSiteContext from './SiteContext';
 
 const TableRows = () => {
-  const { records, postId, setRecords } = useSiteContext();
+  const { records, postId, setRecords, subheading } = useSiteContext();
 
   const addRecord = e => {
     e.preventDefault();
@@ -30,6 +30,7 @@ const TableRows = () => {
 
   return (
     <StyledRows className="records-list">
+      {subheading && <Record subheading record={subheading} />}
       {records.map((record, index) => (
         <Record key={record.id} index={index + 1} record={record} />
       ))}

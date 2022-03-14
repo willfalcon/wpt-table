@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import 'regenerator-runtime';
 import App from './App';
 
-console.log(wp);
-
 wp.domReady(() => {
   initData();
 });

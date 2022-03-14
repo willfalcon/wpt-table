@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 import useDebounce from './lib/useDebounce';
 import useSiteContext from './SiteContext';
+import CellInput from './CellInput';
 
-const Cell = ({ field, record, primary, index, cellIndex }) => {
+const Cell = ({ field, record, primary, index, cellIndex, subheading }) => {
   const thisCell = record.fields[record.fields.findIndex(refField => refField.key === `wpt_${record.id}_${field.id}`)];
 
   const [value, setValue] = useState(thisCell?.value[0] || '');
@@ -35,7 +36,7 @@ const Cell = ({ field, record, primary, index, cellIndex }) => {
   return (
     <StyledCell className="cell" primary={primary ? true : false} data-cell-index={cellIndex}>
       {primary && <span className="cell__index">{index}</span>}
-      <input name={field.label} type="text" value={value} onChange={e => setValue(e.target.value)} />
+      <CellInput name={field.label} type={subheading ? 'text' : field.type} value={value} onChange={e => setValue(e.target.value)} />
     </StyledCell>
   );
 };
@@ -61,11 +62,6 @@ const StyledCell = styled.div`
   }
 
   input {
-    border-radius: 0;
-    margin: 0;
-    border: 0;
-    width: 100%;
-    padding: 10px 5px;
   }
 `;
 

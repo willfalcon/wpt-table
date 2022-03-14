@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 import useSiteContext from './SiteContext';
 import useDebounce from './lib/useDebounce';
-import Heading from './Heading';
+import Heading from './Field/Heading';
 
 const Headings = () => {
   const { fields, postId, setFields } = useSiteContext();

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 const SiteContext = React.createContext();
 
@@ -11,13 +12,22 @@ const SiteContextProvider = ({ data, children }) => {
     return {
       label: field.meta_value,
       id: field.meta_id,
+      type: field.type,
     };
   });
 
-  const [fields, setFields] = useState(initialFields);
-  const [records, setRecords] = useState(savedRecords);
+  const initialRecords = savedRecords.filter(record => !record.subheading);
+  const initialSubheading = savedRecords.filter(record => record.subheading)[0];
 
-  return <SiteContext.Provider value={{ ...data, fields, setFields, records, setRecords }}>{children}</SiteContext.Provider>;
+  const [fields, setFields] = useState(initialFields);
+  const [records, setRecords] = useState(initialRecords);
+  const [subheading, setSubheading] = useState(initialSubheading);
+
+  return (
+    <SiteContext.Provider value={{ ...data, fields, setFields, records, setRecords, subheading, setSubheading }}>
+      {children}
+    </SiteContext.Provider>
+  );
 };
 
 const useSiteContext = () => useContext(SiteContext);
